@@ -107,7 +107,7 @@
         ];
 */
 
-var player_url = "http://localhost:8080/api/secured/player";
+var player_url = server_host + "/api/secured/player";
 
 function getAllPlayersExample(access_token, callback) {
     getAllPlayers(access_token, callback);

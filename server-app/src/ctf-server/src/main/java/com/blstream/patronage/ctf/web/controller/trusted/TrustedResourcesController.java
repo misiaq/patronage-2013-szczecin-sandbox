@@ -1,8 +1,10 @@
 package com.blstream.patronage.ctf.web.controller.trusted;
 
 import com.blstream.patronage.ctf.common.web.controller.AbstractRestController;
+import com.blstream.patronage.ctf.model.Player;
 import com.blstream.patronage.ctf.model.PortalRole;
 import com.blstream.patronage.ctf.model.PortalUser;
+import com.blstream.patronage.ctf.service.PlayerService;
 import com.blstream.patronage.ctf.service.PortalRoleService;
 import com.blstream.patronage.ctf.service.PortalUserService;
 import org.slf4j.Logger;
@@ -41,6 +43,8 @@ public class TrustedResourcesController extends AbstractRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TrustedResourcesController.class);
 
+    private PlayerService playerService;
+
     private PortalUserService portalUserService;
 
     private PortalRoleService portalRoleService;
@@ -48,16 +52,43 @@ public class TrustedResourcesController extends AbstractRestController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody PortalUser createUser(@RequestBody PortalUser resource) {
+    public @ResponseBody PortalUser createUser(@RequestBody PortalUser portalUser) {
         if (logger.isDebugEnabled()) {
             logger.debug("---- createUser method invoked ----");
         }
 
-        Assert.notNull(resource, "Portal user cannot be null");
-        Assert.notNull(resource.getUsername(), "Username cannot be null");
-        Assert.notNull(resource.getPassword(), "Password cannot be null");
+        Assert.notNull(portalUser, "Portal user cannot be null");
+        Assert.notNull(portalUser.getUsername(), "Username cannot be null");
+        Assert.notNull(portalUser.getPassword(), "Password cannot be null");
 
-        return portalUserService.create(resource);
+        portalUser = portalUserService.create(portalUser);
+
+        return portalUser;
+    }
+
+    @RequestMapping(value = "/createPlayer", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody Player createPlayer(@RequestBody Player player) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("---- createPlayer method invoked ----");
+        }
+
+        PortalUser portalUser;
+
+        Assert.notNull(player, "Player cannot be null");
+
+        portalUser = player.getPortalUser();
+
+        Assert.notNull(portalUser, "Portal user cannot be null");
+        Assert.notNull(portalUser.getUsername(), "Username cannot be null");
+        Assert.notNull(portalUser.getPassword(), "Password cannot be null");
+
+        portalUser = portalUserService.create(portalUser);
+
+        player.setPortalUser(portalUser);
+        player = playerService.create(player);
+
+        return player;
     }
 
     @RequestMapping(value = "/getRoles", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })

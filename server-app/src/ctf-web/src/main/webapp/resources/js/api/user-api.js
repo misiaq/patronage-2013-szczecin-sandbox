@@ -95,7 +95,7 @@
         };
 */
 
-var user_url = "http://localhost:8080/api/secured/user";
+var user_url = server_host + "/api/secured/user";
 
 function getAllUsersExample(access_token, callback) {
     getAllUsers(access_token, callback);

@@ -37,6 +37,7 @@
         <http-basic/>
 
         <intercept-url pattern="/api/trusted/createUser" access="IS_AUTHENTICATED_ANONYMOUSLY" method="POST"/>
+        <intercept-url pattern="/api/trusted/createPlayer" access="IS_AUTHENTICATED_ANONYMOUSLY" method="POST"/>
         <intercept-url pattern="/api/trusted/getRoles" access="IS_AUTHENTICATED_ANONYMOUSLY" method="GET"/>
 
         <anonymous/>

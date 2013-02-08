@@ -17,6 +17,7 @@
  * Date: 1/31/13
  */
 
+var server_host = "https://capturetheflag.blstream.com:8080/demo";
 var access_token = null;
 
 $(document).ready(function () {

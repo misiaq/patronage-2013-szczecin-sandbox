@@ -9,11 +9,11 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <properties>
-        <resthub.version>2.0-rc4</resthub.version>
-        <jetty.version>8.1.3.v20120416</jetty.version>
-        <jetty.port>8080</jetty.port>
-    </properties>
+    <parent>
+        <groupId>com.blstream.patronage.ctf</groupId>
+        <artifactId>ctf-portal</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <dependency>
@@ -68,5 +68,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
+
+        <finalName>${project.build.war.finalName}</finalName>
     </build>
 </project>

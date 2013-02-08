@@ -49,7 +49,7 @@
         };
 */
 
-var login_url = "http://localhost:8080/oauth/token";
+var login_url = server_host + "/oauth/token";
 var client_id = "mobile_test";
 var client_secret = "secret";
 var grant_type = "password";
