@@ -2,11 +2,7 @@ package com.blstream.patronage.ctf.web.controller.trusted;
 
 import com.blstream.patronage.ctf.common.web.controller.AbstractRestController;
 import com.blstream.patronage.ctf.model.Player;
-import com.blstream.patronage.ctf.model.PortalRole;
-import com.blstream.patronage.ctf.model.PortalUser;
-import com.blstream.patronage.ctf.service.PlayerService;
-import com.blstream.patronage.ctf.service.PortalRoleService;
-import com.blstream.patronage.ctf.service.PortalUserService;
+import com.blstream.patronage.ctf.service.TrustedResourcesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
 
 /**
  * Copyright 2013 BLStream
@@ -43,28 +38,7 @@ public class TrustedResourcesController extends AbstractRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TrustedResourcesController.class);
 
-    private PlayerService playerService;
-
-    private PortalUserService portalUserService;
-
-    private PortalRoleService portalRoleService;
-
-
-    @RequestMapping(value = "/createUser", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody PortalUser createUser(@RequestBody PortalUser portalUser) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("---- createUser method invoked ----");
-        }
-
-        Assert.notNull(portalUser, "Portal user cannot be null");
-        Assert.notNull(portalUser.getUsername(), "Username cannot be null");
-        Assert.notNull(portalUser.getPassword(), "Password cannot be null");
-
-        portalUser = portalUserService.create(portalUser);
-
-        return portalUser;
-    }
+    private TrustedResourcesService trustedResourcesService;
 
     @RequestMapping(value = "/createPlayer", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseStatus(HttpStatus.CREATED)
@@ -73,42 +47,20 @@ public class TrustedResourcesController extends AbstractRestController {
             logger.debug("---- createPlayer method invoked ----");
         }
 
-        PortalUser portalUser;
-
         Assert.notNull(player, "Player cannot be null");
 
-        portalUser = player.getPortalUser();
+        player = trustedResourcesService.createPlayer(player);
 
-        Assert.notNull(portalUser, "Portal user cannot be null");
-        Assert.notNull(portalUser.getUsername(), "Username cannot be null");
-        Assert.notNull(portalUser.getPassword(), "Password cannot be null");
-
-        portalUser = portalUserService.create(portalUser);
-
-        player.setPortalUser(portalUser);
-        player = playerService.create(player);
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("Player %s was created [id: %s]", player.getPortalUser().getUsername(), player.getPortalUser().getId()));
+        }
 
         return player;
     }
 
-    @RequestMapping(value = "/getRoles", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody List<PortalRole> getRoles() {
-        if (logger.isDebugEnabled()) {
-            logger.debug("---- getRoles method invoked ----");
-        }
-        return portalRoleService.findAll();
-    }
-
     @Inject
-    @Named("portalUserService")
-    public void setPortalUserService(PortalUserService portalUserService) {
-        this.portalUserService = portalUserService;
-    }
-
-    @Inject
-    @Named("portalRoleService")
-    public void setPortalRoleService(PortalRoleService portalRoleService) {
-        this.portalRoleService = portalRoleService;
+    @Named("trustedResourcesService")
+    public void setTrustedResourcesService(TrustedResourcesService trustedResourcesService) {
+        this.trustedResourcesService = trustedResourcesService;
     }
 }

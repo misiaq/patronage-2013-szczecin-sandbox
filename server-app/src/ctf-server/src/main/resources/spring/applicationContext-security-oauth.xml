@@ -23,7 +23,8 @@
 
         <!--<intercept-url pattern="/api/secured/.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />-->
 
-        <intercept-url pattern="/api/secured/(user|role|player)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+        <intercept-url pattern="/api/secured/role/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+        <intercept-url pattern="/api/secured/(user|player)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
         <intercept-url pattern="/api/secured/(user|role|player)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="POST" />
 
         <intercept-url pattern="/api/secured/.*" access="denyAll()"/>

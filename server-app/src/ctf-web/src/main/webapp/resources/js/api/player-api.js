@@ -35,24 +35,27 @@
 
         How to add new player?
 
-            > curl -H "Accept: application/json" -H "Content-type: application/json" -H "Authorization: Bearer f1dc7fdb-a0ef-4208-9ed6-3be5f93870d4" -X POST -d '{"type":"PRIVATE","portalUser":{"id":"510a6cc2da063f708d7af354"}}' http://localhost:8080/api/secured/player
+            > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"type":"PRIVATE","portalUser":{"username":"krol.julian@blstream.com","password":"FKA13#aqFR3","firstName":"Krol","lastName":"Julian","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true}}' http://localhost:8080/api/trusted/createPlayer
 
 
             HEADERS: {
                 Accept: application/json,
-                Content-type: application/json,
-                Authorization: Bearer ed756770-e752-4f54-a278-1eee91a47b4a
+                Content-type: application/json
             }
 
             POST DATA: {
                 "type": "PRIVATE",
-                "portalUser":
-                    {
-                        "id": "510a6cc2da063f708d7af354"
-                    }
+                "portalUser": {
+                    "username": "krol.julian@blstream.com",
+                    "password": "FKA13#aqFR3",
+                    "firstName": "Krol",
+                    "lastName": "Julian",
+                    "accountNonExpired": true,
+                    "accountNonLocked": true,
+                    "credentialsNonExpired": true,
+                    "enabled": true
                 }
             }
-
  */
 
 /*
@@ -100,6 +103,9 @@
                         "roles": [
                             {
                                 "authority": "PORTAL_USER"
+                            },
+                            {
+                                "authority": "PORTAL_PLAYER"
                             }
                         ]
                     }
