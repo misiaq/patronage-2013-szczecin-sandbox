@@ -1,0 +1,14 @@
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit" ng-hide="Signed">
+	<h1>Capture The Flag</h1>
+	<p></p>
+	<p>
+		<a class="btn btn-primary btn-large" href="#/register">Register &raquo;</a>
+	</p>
+</div>
+
+<div class="row" ng-show="Signed">
+	<div class="span4" ng-include="'partials/players.html'"></div>
+</div>
+
+<hr>

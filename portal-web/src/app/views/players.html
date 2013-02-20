@@ -1,0 +1,9 @@
+<div ng-controller="PlayersCtrl">
+	<h2>Players</h2>
+	<div ng-hide="players.length > 0">
+        <p class="lead">-</p>
+    </div>
+	<ul>
+		<li ng-repeat="player in players">{{player.name}}</li>
+	</ul>
+</div>
