@@ -21,7 +21,7 @@ wwwApp.controller('MainCtrl', function($scope, $http, $templateCache, $location,
 	// global config
 	$scope.server_host = 'https://capturetheflag.blstream.com:8080/demo'
 	$scope.login_url = $scope.server_host + '/oauth/token';
-	$scope.client_id = 'mobile_test';
+	$scope.client_id = 'web_www';
 	$scope.client_secret = 'secret';
 	$scope.grant_type = 'password';
 	
