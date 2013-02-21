@@ -87,8 +87,8 @@ public class AddPlayerController extends AbstractRestController {
             }
 
             // TODO: get message from properties file: error-codes.properties
-            // message.setMessage(e.getMessage());
-            message.setDescription(e.getMessage());
+            message.setError(ErrorCodeType.PLAYER_ALREADY_EXISTS.toString());
+            message.setErrorDescription(e.getMessage());
             message.setErrorCode(ErrorCodeType.PLAYER_ALREADY_EXISTS);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
@@ -96,8 +96,8 @@ public class AddPlayerController extends AbstractRestController {
             }
 
             // TODO: get message from properties file: error-codes.properties
-            // message.setMessage(e.getMessage());
-            message.setDescription(e.getMessage());
+            message.setError(ErrorCodeType.CANNOT_CREATE_NEW_PLAYER.toString());
+            message.setErrorDescription(e.getMessage());
             message.setErrorCode(ErrorCodeType.CANNOT_CREATE_NEW_PLAYER);
         }
 

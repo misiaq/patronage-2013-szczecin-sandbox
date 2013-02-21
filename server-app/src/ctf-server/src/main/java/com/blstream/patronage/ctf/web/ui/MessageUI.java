@@ -2,6 +2,8 @@ package com.blstream.patronage.ctf.web.ui;
 
 import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -26,23 +28,32 @@ import java.io.Serializable;
  * This class is a representation of UI message object. It's used for sending
  * all necessary message in JSON from server to clients.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({ "errorCodeType" })
 public class MessageUI implements Serializable {
 
     private static final long serialVersionUID = -5666869456289227620L;
 
-    private static final String UNDEFINED = "undefined";
-
     private String message;
+
+    private String error;
+
+    @JsonProperty("message_description")
     private String description;
+
+    @JsonProperty("error_description")
+    private String errorDescription;
+
+    @JsonProperty("error_code")
     private ErrorCodeType errorCode;
+
 
     /**
      * Returns a message body.
      * @return String
      */
     public String getMessage() {
-        return message != null ? message : UNDEFINED;
+        return message;
     }
 
     /**
@@ -54,11 +65,27 @@ public class MessageUI implements Serializable {
     }
 
     /**
+     * Sets error message.
+     * @return String
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * Returns error message.
+     * @param error
+     */
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    /**
      * Returns a message description.
      * @return String
      */
     public String getDescription() {
-        return description != null ? description : UNDEFINED;
+        return description;
     }
 
     /**
@@ -70,12 +97,28 @@ public class MessageUI implements Serializable {
     }
 
     /**
-     * Returns an error code in format: (\d.\d.\d).
-     * For example: for SUCCESS response error code is "0.0.0".
+     * Returns error description.
      * @return String
      */
-    public String getErrorCode() {
-        return errorCode != null ? errorCode.getCode() : UNDEFINED;
+    public String getErrorDescription() {
+        return errorDescription;
+    }
+
+    /**
+     * Sets error description.
+     * @param errorDescription
+     */
+    public void setErrorDescription(String errorDescription) {
+        this.errorDescription = errorDescription;
+    }
+
+    /**
+     * Returns an error code in int format.
+     * For example: for SUCCESS response error code is: 0.
+     * @return Integer
+     */
+    public Integer getErrorCode() {
+        return errorCode != null ? errorCode.getCode() : null;
     }
 
     /**

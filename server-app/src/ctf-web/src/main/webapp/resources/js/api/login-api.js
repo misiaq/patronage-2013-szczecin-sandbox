@@ -50,7 +50,7 @@ RESPONSE:
 */
 
 var login_url = server_host + "/oauth/token";
-var client_id = "mobile_test";
+var client_id = "web_www";
 var client_secret = "secret";
 var grant_type = "password";
 var username = "michal.krawczak@blstream.com";

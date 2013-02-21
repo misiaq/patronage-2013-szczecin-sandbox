@@ -22,26 +22,27 @@ package com.blstream.patronage.ctf.common.errors;
  * All error codes are stored in error-codes.properties file.
  */
 public enum ErrorCodeType {
-    SUCCESS("0.0.0"),
+    SUCCESS(0),
 
-    FAILED("5.0.0"),
-    BAD_REQUEST("4.0.4"),
+    CANNOT_CREATE_NEW_PLAYER(1),
+    PLAYER_ALREADY_EXISTS(2),
 
-    CANNOT_CREATE_NEW_PLAYER("1.0.1"),
-    PLAYER_ALREADY_EXISTS("1.0.2"),
+    BAD_REQUEST(3),
+    FAILED(4)
     ;
 
-    private String code;
+    private Integer code;
 
-    private ErrorCodeType(String code) {
+    private ErrorCodeType(Integer code) {
         this.code = code;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
+    @Override
     public String toString() {
-        return code;
+        return name().toLowerCase();
     }
 }

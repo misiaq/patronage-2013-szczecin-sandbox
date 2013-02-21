@@ -33,10 +33,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 public abstract class AbstractRestController {
 
-    @Value("${error.4.0.0}")
+    @Value("${error.3}")
     private String badRequestMessage;
 
-    @Value("${error.5.0.0}")
+    @Value("${error.4}")
     private String failedMessage;
 
 
@@ -54,8 +54,8 @@ public abstract class AbstractRestController {
     public MessageUI handleBadRequestException(Exception e) {
         MessageUI messageUI = new MessageUI();
 
-        messageUI.setDescription(e.getMessage());
-        messageUI.setMessage(badRequestMessage);
+        messageUI.setErrorDescription(e.getMessage());
+        messageUI.setError(badRequestMessage);
         messageUI.setErrorCode(ErrorCodeType.BAD_REQUEST);
 
         return messageUI;
@@ -71,8 +71,8 @@ public abstract class AbstractRestController {
     public MessageUI handleException(Exception e) {
         MessageUI messageUI = new MessageUI();
 
-        messageUI.setDescription(e.getMessage());
-        messageUI.setMessage(failedMessage);
+        messageUI.setErrorDescription(e.getMessage());
+        messageUI.setError(failedMessage);
         messageUI.setErrorCode(ErrorCodeType.FAILED);
 
         return messageUI;

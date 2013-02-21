@@ -21,7 +21,9 @@
           use-expressions="true" xmlns="http://www.springframework.org/schema/security">
         <anonymous enabled="false" />
 
-        <intercept-url pattern="/api/secured/(users|players)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+        <intercept-url pattern="/api/secured/players/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
+
+        <intercept-url pattern="/api/secured/users/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('read')" method="GET" />
         <intercept-url pattern="/api/secured/(users|players)/?.*" access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('PORTAL_ADMIN') or #oauth2.isClient()) and #oauth2.hasScope('write')" method="POST" />
 
         <intercept-url pattern="/api/secured/.*" access="denyAll()"/>
@@ -107,11 +109,13 @@
 
     <oauth:client-details-service id="clientDetails">
         <!--<oauth:client client-id="mobile_android" authorized-grant-types="password,refresh-token" authorities="ROLE_CLIENT" scope="read,write" secret="secret" />-->
-        <oauth:client client-id="mobile_android" authorized-grant-types="password,authorization_code,refresh_token,implicit" authorities="ROLE_CLIENT" scope="read" secret="secret" />
+        <!--<oauth:client client-id="mobile_android" authorized-grant-types="password,authorization_code,refresh_token,implicit" authorities="ROLE_CLIENT" scope="read" secret="secret" />-->
+        <!--<oauth:client client-id="test" resource-ids="ctf" authorized-grant-types="authorization_code,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" />-->
 
-        <oauth:client client-id="mobile_test" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" /> <!-- access-token-validity="60" -->
-
-        <oauth:client client-id="test" resource-ids="ctf" authorized-grant-types="authorization_code,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" />
+        <oauth:client client-id="mobile_android" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="mobile_ios" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="mobile_windows" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
+        <oauth:client client-id="web_www" authorized-grant-types="password,refresh-token,implicit" authorities="ROLE_CLIENT" scope="read,write" secret="secret" access-token-validity="-1" />
     </oauth:client-details-service>
 
     <sec:global-method-security pre-post-annotations="enabled" proxy-target-class="true">
