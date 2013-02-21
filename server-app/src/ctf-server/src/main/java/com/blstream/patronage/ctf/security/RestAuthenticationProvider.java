@@ -30,6 +30,11 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/29/13
+ *
+ * This class is a representation of REST authentication provider which is using by Spring Security for users
+ * authentication process.
+ *
+ * @see <a href="http://static.springsource.org/spring-security/site/docs/3.2.x/reference/springsecurity-single.html">Spring-Security 3.2 reference</a>
  */
 @Named("restAuthenticationProvider")
 public class RestAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
@@ -81,7 +86,8 @@ public class RestAuthenticationProvider extends AbstractUserDetailsAuthenticatio
             );
         }
 
-//        if (!passwordEncoder.isPasswordValid(userDetails.getPassword(), presentedPassword, salt)) {
+        // TODO: make user's password encrypted!
+        // if (!passwordEncoder.isPasswordValid(userDetails.getPassword(), presentedPassword, salt)) {
         if (!userDetails.getPassword().equals(presentedPassword)) {
             if (logger.isWarnEnabled()) {
                 logger.warn("Authentication failed: password does not match stored value");

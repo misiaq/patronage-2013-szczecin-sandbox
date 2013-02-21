@@ -32,6 +32,10 @@ import javax.inject.Named;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * Example.
+ *
+ * TODO: remove this example class.
  */
 @Controller
 @RequestMapping("/api/secured/simple")
@@ -42,12 +46,7 @@ public class SimpleController extends BaseRestController<SimpleModel, String, Si
     @Inject
     @Named("simpleService")
     public void setService(SimpleService service) {
-        super.setService(service);
-    }
-
-    @Override
-    public String getIdFromResource(SimpleModel resource) {
-        return resource.getId();
+        super.service = service;
     }
 
     @RequestMapping(value = "findByName/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

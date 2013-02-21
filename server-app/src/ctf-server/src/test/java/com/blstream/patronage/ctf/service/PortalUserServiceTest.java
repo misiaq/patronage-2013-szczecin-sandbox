@@ -63,7 +63,7 @@ public class PortalUserServiceTest {
 
         mongoOperations.save(player);
 
-        Assert.notNull(portalUser.getId());
+        Assert.notNull(portalUser.getUsername());
         Assert.notNull(player.getId());
 
         logger.debug("All objects were saved without errors.");

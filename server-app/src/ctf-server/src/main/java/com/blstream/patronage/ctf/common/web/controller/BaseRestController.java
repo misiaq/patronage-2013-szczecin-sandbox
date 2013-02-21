@@ -27,6 +27,12 @@ import java.io.Serializable;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This is a representation of base REST controller with CRUD logic model. It's an implementation
+ * of RestController interface.
+ *
+ * @see com.blstream.patronage.ctf.common.web.controller.RestController
+ * @see com.blstream.patronage.ctf.common.web.controller.AbstractRestController
  */
 public abstract class BaseRestController<T, ID extends Serializable, S extends CrudService<T, ID>> extends AbstractRestController implements RestController<T, ID> {
 
@@ -34,12 +40,15 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
 
     protected S service;
 
-    public void setService(S service) {
-        this.service = service;
-    }
+    /**
+     * This is an abstract method where service is set.
+     * @param service
+     */
+    protected abstract void setService(S service);
 
-    public abstract String getIdFromResource(T resource);
-
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(Object)
+     */
     @Override
     public T create(@RequestBody T resource) {
         if (logger.isDebugEnabled()) {
@@ -48,6 +57,9 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
         return service.create(resource);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#create(Object)
+     */
     @Override
     public T update(@PathVariable ID id, @RequestBody T resource) {
         if (logger.isDebugEnabled()) {
@@ -61,6 +73,9 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
         return service.update(id, resource);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#findAll()
+     */
     @Override
     public Iterable<T> findAll() {
         if (logger.isDebugEnabled()) {
@@ -70,6 +85,9 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
         return service.findAll();
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#findById(java.io.Serializable)
+     */
     @Override
     public T findById(@PathVariable ID id) {
         if (logger.isDebugEnabled()) {
@@ -81,6 +99,9 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
         return service.findById(id);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.web.controller.RestController#delete(java.io.Serializable)
+     */
     @Override
     public void delete(@PathVariable ID id) {
         if (logger.isDebugEnabled()) {
@@ -92,6 +113,10 @@ public abstract class BaseRestController<T, ID extends Serializable, S extends C
         service.delete(id);
     }
 
+    /**
+     * This is a test method which always returns simple It's alive! text.
+     * @return "It's alive!"
+     */
     @RequestMapping("/isAlive")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')")

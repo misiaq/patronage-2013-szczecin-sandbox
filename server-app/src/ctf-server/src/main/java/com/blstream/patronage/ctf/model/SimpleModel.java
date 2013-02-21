@@ -20,6 +20,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a representation of simple model like a example.
+ *
+ * TODO: remove this class and all dependencies like service, repository and controller.
  */
 @Document
 public class SimpleModel {

@@ -25,15 +25,24 @@ import java.util.List;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a implementation of CrudService interface.
+ *
+ * @see com.blstream.patronage.ctf.common.service.CrudService
  */
-public class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSortingRepository<T, ID>> implements CrudService<T, ID> {
+public abstract class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSortingRepository<T, ID>> implements CrudService<T, ID> {
 
     protected R repository;
 
-    public void setRepository(R repository) {
-        this.repository = repository;
-    }
+    /**
+     * This is an abstract method where repository will be set.
+     * @param repository
+     */
+    protected abstract void setRepository(R repository);
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#create(Object)
+     */
     @Override
     @Transactional
     public T create(T resource) {
@@ -41,6 +50,9 @@ public class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSort
         return repository.save(resource);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#update(java.io.Serializable, Object)
+     */
     @Override
     @Transactional
     public T update(ID id, T resource) {
@@ -53,6 +65,9 @@ public class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSort
         return repository.save(resource);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#delete(java.io.Serializable)
+     */
     @Override
     @Transactional
     public void delete(ID id) {
@@ -60,32 +75,42 @@ public class CrudServiceImpl<T, ID extends Serializable, R extends PagingAndSort
         repository.delete(id);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#deleteAll(boolean)
+     */
     @Override
     @Transactional
-    public void deleteAll() {
-        repository.deleteAll();
-    }
-
-    @Override
-    @Transactional
-    public void deleteAllWithCascade() {
-        Iterable<T> list = repository.findAll();
-        for (T element : list) {
-            repository.delete(element);
+    public void deleteAll(boolean cascadeMode) {
+        if (!cascadeMode) {
+            repository.deleteAll();
+        } else {
+            Iterable<T> list = repository.findAll();
+            for (T element : list) {
+                repository.delete(element);
+            }
         }
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#findById(java.io.Serializable)
+     */
     @Override
     public T findById(ID id) {
         Assert.notNull(id, "Resource ID couldn't be null");
         return repository.findOne(id);
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#findAll()
+     */
     @Override
     public List<T> findAll() {
         return (List<T>) repository.findAll();
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.common.service.CrudService#count()
+     */
     @Override
     public Long count() {
         return repository.count();

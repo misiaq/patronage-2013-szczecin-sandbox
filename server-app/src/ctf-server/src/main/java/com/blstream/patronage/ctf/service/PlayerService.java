@@ -1,7 +1,9 @@
 package com.blstream.patronage.ctf.service;
 
+import com.blstream.patronage.ctf.common.exception.AlreadyExistsException;
 import com.blstream.patronage.ctf.common.service.CrudService;
 import com.blstream.patronage.ctf.model.Player;
+import com.blstream.patronage.ctf.web.ui.PlayerUI;
 
 /**
  * Copyright 2013 BLStream
@@ -18,8 +20,28 @@ import com.blstream.patronage.ctf.model.Player;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * User: lahim
- * Date: 1/22/13
+ * User: mkr
+ * Date: 2/19/13
+ *
+ * This class is a representation of player service in CRUD logic model.
+ *
+ * @see com.blstream.patronage.ctf.common.service.CrudService
  */
 public interface PlayerService extends CrudService<Player, String> {
+
+    /**
+     * This method creates a new player.
+     *
+     * @param player
+     * @return Player
+     * @exception AlreadyExistsException
+     */
+    Player createNewPlayer(PlayerUI player) throws AlreadyExistsException;
+
+    /**
+     * This method finds player based on username.
+     * @param username
+     * @return Player
+     */
+    Player findByUsername(String username);
 }

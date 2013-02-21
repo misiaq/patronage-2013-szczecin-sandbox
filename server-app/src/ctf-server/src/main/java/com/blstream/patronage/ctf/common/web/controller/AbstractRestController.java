@@ -1,14 +1,14 @@
 package com.blstream.patronage.ctf.common.web.controller;
 
+import com.blstream.patronage.ctf.common.errors.ErrorCodeType;
 import com.blstream.patronage.ctf.common.exception.BadRequestException;
+import com.blstream.patronage.ctf.web.ui.MessageUI;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Copyright 2013 BLStream
@@ -27,22 +27,54 @@ import javax.servlet.http.HttpServletResponse;
  *
  * User: mkr
  * Date: 1/31/13
+ *
+ * This class is a representation of abstract REST controller with exception handling.
+ * All errors code are reading from error-code.properties file.
  */
 public abstract class AbstractRestController {
 
+    @Value("${error.4.0.0}")
+    private String badRequestMessage;
+
+    @Value("${error.5.0.0}")
+    private String failedMessage;
+
+
+    /**
+     * Returns error message when BadRequestException or IllegalArgumentException
+     * exception occured.
+     *
+     * @see com.blstream.patronage.ctf.common.exception.BadRequestException
+     *
+     * @param e
+     * @return
+     */
     @ExceptionHandler({BadRequestException.class, IllegalArgumentException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ModelAndView handleBadRequestException(Exception e, HttpServletRequest requst, HttpServletResponse response) {
-        MappingJacksonJsonView view = new MappingJacksonJsonView();
-        view.getAttributesMap().put("error", e.getMessage());
-        return new ModelAndView(view);
+    public MessageUI handleBadRequestException(Exception e) {
+        MessageUI messageUI = new MessageUI();
+
+        messageUI.setDescription(e.getMessage());
+        messageUI.setMessage(badRequestMessage);
+        messageUI.setErrorCode(ErrorCodeType.BAD_REQUEST);
+
+        return messageUI;
     }
 
+    /**
+     * Returns error message when Exception occured.
+     * @param e
+     * @return
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ModelAndView handleException(Exception e, HttpServletRequest requst, HttpServletResponse response) {
-        MappingJacksonJsonView view = new MappingJacksonJsonView();
-        view.getAttributesMap().put("error", e.getMessage());
-        return new ModelAndView(view);
+    public MessageUI handleException(Exception e) {
+        MessageUI messageUI = new MessageUI();
+
+        messageUI.setDescription(e.getMessage());
+        messageUI.setMessage(failedMessage);
+        messageUI.setErrorCode(ErrorCodeType.FAILED);
+
+        return messageUI;
     }
 }

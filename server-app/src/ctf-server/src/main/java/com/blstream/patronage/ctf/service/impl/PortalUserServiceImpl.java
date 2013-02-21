@@ -27,6 +27,10 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/23/13
+ *
+ * This is a implementation of PortalUserService interface.
+ *
+ * @see com.blstream.patronage.ctf.service.PortalUserService
  */
 @Named("portalUserService")
 public class PortalUserServiceImpl extends CrudServiceImpl<PortalUser, String, PortalUserRepository> implements PortalUserService {
@@ -37,9 +41,12 @@ public class PortalUserServiceImpl extends CrudServiceImpl<PortalUser, String, P
     @Named("portalUserRepository")
     @Override
     public void setRepository(PortalUserRepository repository) {
-        super.setRepository(repository);
+        super.repository = repository;
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.service.PortalUserService#findByUsername(String)
+     */
     @Override
     public PortalUser findByUsername(String username) {
         return repository.findByUsername(username);

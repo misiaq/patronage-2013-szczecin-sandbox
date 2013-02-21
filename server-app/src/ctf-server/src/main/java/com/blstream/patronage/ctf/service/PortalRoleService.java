@@ -20,7 +20,17 @@ import com.blstream.patronage.ctf.model.PortalRole;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of portal role service in CRUD logic model.
+ *
+ * @see com.blstream.patronage.ctf.common.service.CrudService
  */
 public interface PortalRoleService extends CrudService<PortalRole, String> {
+
+    /**
+     * This method finds portal authority based on role name.
+     * @param authority
+     * @return PortalRole
+     */
     PortalRole findByAuthority(String authority);
 }

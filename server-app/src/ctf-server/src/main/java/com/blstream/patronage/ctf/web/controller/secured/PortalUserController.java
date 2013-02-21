@@ -28,23 +28,22 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/23/13
+ *
+ * This is a representation of trusted (secured) controller where all portal users
+ * can by managed using CRUD logic model.
+ *
+ * Controller context: /api/secured/users
  */
 @Controller
-@RequestMapping("/api/secured/user")
+@RequestMapping("/api/secured/users")
 public class PortalUserController extends BaseRestController<PortalUser, String, PortalUserService> {
 
-    private static final Logger logger = LoggerFactory.getLogger(PortalRoleController.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(PortalUserController.class);
 
     @Inject
     @Named("portalUserService")
     @Override
     public void setService(PortalUserService service) {
-        super.setService(service);
-    }
-
-    @Override
-    public String getIdFromResource(PortalUser resource) {
-        return resource.getId();
+        super.service = service;
     }
 }

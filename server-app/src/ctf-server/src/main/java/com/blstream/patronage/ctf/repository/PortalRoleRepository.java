@@ -23,8 +23,16 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of MongoDB repository for all portal roles.
  */
 @Named("portalRoleRepository")
 public interface PortalRoleRepository extends MongoRepository<PortalRole, String> {
+
+    /**
+     * This method finds portal authority based on role name.
+     * @param authority
+     * @return PortalRole
+     */
     PortalRole findByAuthority(String authority);
 }

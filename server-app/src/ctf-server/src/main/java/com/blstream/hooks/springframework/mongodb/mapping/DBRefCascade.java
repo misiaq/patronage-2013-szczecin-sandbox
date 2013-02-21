@@ -29,7 +29,7 @@ public @interface DBRefCascade {
     /**
      * Save object with cascade mode. Default value is true.
      *
-     * @return
+     * @return boolean
      */
     boolean save() default true;
 }

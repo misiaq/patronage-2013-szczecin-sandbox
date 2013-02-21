@@ -24,6 +24,11 @@ import java.io.Serializable;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of portal authority object. It's holds all security
+ * roles for portal user object.
+ *
+ * @see com.blstream.patronage.ctf.model.PortalUser
  */
 @Document
 public class PortalRole implements GrantedAuthority, Serializable {
@@ -43,10 +48,18 @@ public class PortalRole implements GrantedAuthority, Serializable {
         this.authority = authority;
     }
 
+    /**
+     * Sets a role name.
+     * @param authority
+     */
     public void setAuthority(String authority) {
         this.authority = authority;
     }
 
+    /**
+     * Gets a role name.
+     * @return
+     */
     @Override
     public String getAuthority() {
         return authority;

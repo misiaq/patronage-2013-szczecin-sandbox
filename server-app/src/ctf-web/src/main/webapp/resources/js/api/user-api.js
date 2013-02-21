@@ -95,7 +95,7 @@
         };
 */
 
-var user_url = server_host + "/api/secured/user";
+var user_url = server_host + "/api/secured/users";
 
 function getAllUsersExample(access_token, callback) {
     getAllUsers(access_token, callback);

@@ -17,8 +17,14 @@ package com.blstream.patronage.ctf.common.exception;
  *
  * User: mkr
  * Date: 1/31/13
+ *
+ * This class is a representation of bad request exception.
  */
 public class BadRequestException extends Exception {
+
+    public BadRequestException() {
+        super();
+    }
 
     public BadRequestException(String message) {
         super(message);

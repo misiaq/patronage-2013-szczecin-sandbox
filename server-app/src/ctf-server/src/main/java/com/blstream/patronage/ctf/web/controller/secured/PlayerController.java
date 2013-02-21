@@ -28,9 +28,14 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This is a representation of trusted (secured) controller where all players
+ * can by managed using CRUD logic model.
+ *
+ * Controller context: /api/secured/players
  */
 @Controller
-@RequestMapping("/api/secured/player")
+@RequestMapping("/api/secured/players")
 public class PlayerController extends BaseRestController<Player, String, PlayerService> {
 
     private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
@@ -39,11 +44,6 @@ public class PlayerController extends BaseRestController<Player, String, PlayerS
     @Named("playerService")
     @Override
     public void setService(PlayerService service) {
-        super.setService(service);
-    }
-
-    @Override
-    public String getIdFromResource(Player resource) {
-        return resource.getId();
+        super.service = service;
     }
 }

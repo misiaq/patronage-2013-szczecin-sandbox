@@ -20,7 +20,17 @@ import com.blstream.patronage.ctf.model.PortalUser;
  *
  * User: lahim
  * Date: 1/23/13
+ *
+ * This class is a representation of portal user service in CRUD logic model.
+ *
+ * @see com.blstream.patronage.ctf.common.service.CrudService
  */
 public interface PortalUserService extends CrudService<PortalUser, String> {
+
+    /**
+     * This method finds portal user based on username.
+     * @param username
+     * @return PortalUser
+     */
     PortalUser findByUsername(String username);
 }

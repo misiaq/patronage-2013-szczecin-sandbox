@@ -23,22 +23,48 @@ import java.io.Serializable;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a representation of generic REST controller which works on CRUD logic model.
  */
 public interface RestController<T, ID extends Serializable> {
 
+    /**
+     * This method creates a new document.
+     * @param resource
+     * @return T
+     */
     @RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody T create(@RequestBody T resource);
 
+    /**
+     * This method updates an existing document.
+     * @param id
+     * @param resource
+     * @return T
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody T update(@PathVariable ID id, @RequestBody T resource);
 
+    /**
+     * This method finds all existing documents.
+     * @return List
+     */
     @RequestMapping(params = "all", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody Iterable<T> findAll();
 
+    /**
+     * This method finds existing document based on id.
+     * @param id
+     * @return T
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody T findById(@PathVariable ID id);
 
+    /**
+     * This method removes existing document based on id.
+     * @param id
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable ID id);

@@ -25,6 +25,10 @@ import javax.inject.Named;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * Example.
+ *
+ * TODO: remove this example class.
  */
 @Named("simpleService")
 public class SimpleServiceImpl extends CrudServiceImpl<SimpleModel, String, SimpleRepository> implements SimpleService {
@@ -33,7 +37,7 @@ public class SimpleServiceImpl extends CrudServiceImpl<SimpleModel, String, Simp
     @Named("simpleRepository")
     @Override
     public void setRepository(SimpleRepository repository) {
-        super.setRepository(repository);
+        super.repository = repository;
     }
 
     @Override

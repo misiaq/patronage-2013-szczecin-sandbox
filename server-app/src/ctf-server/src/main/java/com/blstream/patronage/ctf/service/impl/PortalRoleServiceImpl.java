@@ -25,6 +25,10 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This is a implementation of PortalRoleService interface.
+ *
+ * @see com.blstream.patronage.ctf.service.PortalRoleService
  */
 @Named("portalRoleService")
 public class PortalRoleServiceImpl extends CrudServiceImpl<PortalRole, String, PortalRoleRepository> implements PortalRoleService {
@@ -33,9 +37,12 @@ public class PortalRoleServiceImpl extends CrudServiceImpl<PortalRole, String, P
     @Named("portalRoleRepository")
     @Override
     public void setRepository(PortalRoleRepository repository) {
-        super.setRepository(repository);
+        super.repository = repository;
     }
 
+    /**
+     * @see com.blstream.patronage.ctf.service.PortalRoleService#findByAuthority(String)
+     */
     @Override
     public PortalRole findByAuthority(String authority) {
         return repository.findByAuthority(authority);

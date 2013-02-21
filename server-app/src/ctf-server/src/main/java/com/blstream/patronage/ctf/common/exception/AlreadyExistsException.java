@@ -1,4 +1,4 @@
-package com.blstream.hooks.springframework.mongodb.mapping;
+package com.blstream.patronage.ctf.common.exception;
 
 /**
  * Copyright 2013 BLStream
@@ -15,14 +15,18 @@ package com.blstream.hooks.springframework.mongodb.mapping;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * User: lahim
- * Date: 1/29/13
+ * User: mkr
+ * Date: 2/20/13
+ *
+ * This class is a representation of already exists exception.
  */
-public @interface DBRefCollectionCascade {
-    /**
-     * Save object with cascade mode. Default value is true.
-     *
-     * @return boolean
-     */
-    boolean save() default true;
+public class AlreadyExistsException extends Exception {
+
+    public AlreadyExistsException() {
+        super();
+    }
+
+    public AlreadyExistsException(String message) {
+        super(message);
+    }
 }

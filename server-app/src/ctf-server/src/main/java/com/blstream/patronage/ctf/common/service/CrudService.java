@@ -20,22 +20,61 @@ import java.util.List;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a representation of a generic CRUD service.
+ * C - Create
+ * R - Read
+ * U - Update
+ * D - Delete
+ *
+ * Generic types like T nad ID are: document and id of this document.
  */
 public interface CrudService<T, ID extends Serializable> {
 
+    /**
+     * This method creates new document.
+     * @param resource
+     * @return T
+     */
     T create(T resource);
 
+    /**
+     * This method updates existing document.
+     * @param id
+     * @param resource
+     * @return T
+     */
     T update(ID id, T resource);
 
+    /**
+     * This method removes permanently existing document.
+     * @param id
+     */
     void delete(ID id);
 
-    void deleteAll();
+    /**
+     * This method removes permanently all existing documents.
+     * If cascadeMode is TRUE, then all dependencies will be also removed.
+     * @param cascadeMode
+     */
+    void deleteAll(boolean cascadeMode);
 
-    void deleteAllWithCascade();
-
+    /**
+     * This method finds document based on ID.
+     * @param id
+     * @return T
+     */
     T findById(ID id);
 
+    /**
+     * This method finds all documents.
+     * @return List
+     */
     List<T> findAll();
 
+    /**
+     * This method returns a count of all documents.
+     * @return Long
+     */
     Long count();
 }

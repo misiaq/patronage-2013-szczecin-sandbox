@@ -17,11 +17,13 @@ package com.blstream.patronage.ctf.model;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of enum type for player object.
  */
 public enum PlayerType {
     PRIVATE,
 
-    SCOUT,
+    SCOUT, // TODO: use it in future!
 
-    COMMANDER
+    COMMANDER // TODO: use it in future!
 }

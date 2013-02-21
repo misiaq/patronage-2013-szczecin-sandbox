@@ -27,6 +27,9 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/30/13
+ *
+ * This class is a representation of password encoder service. This service is able to encode password using SHA
+ * password encoder.
  */
 @Named("passwordEncoderService")
 public class PasswordEncoderService {
@@ -48,6 +51,11 @@ public class PasswordEncoderService {
         this.saltSource = saltSource;
     }
 
+    /**
+     * Encodes user's password.
+     * @param portalUser
+     * @return String
+     */
     public String encodePassword(final PortalUser portalUser) {
         User user = prepareUser(portalUser);
         Object salt = saltSource.getSalt(user);
@@ -75,6 +83,11 @@ public class PasswordEncoderService {
         return encodedPassword;
     }
 
+    /**
+     * Prepares security user object based on portal user instance.
+     * @param portalUser
+     * @return User
+     */
     private User prepareUser(final PortalUser portalUser) {
         User user;
 

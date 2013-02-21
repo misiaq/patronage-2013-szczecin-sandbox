@@ -2,6 +2,7 @@ package com.blstream.patronage.ctf.model;
 
 import com.blstream.hooks.springframework.mongodb.mapping.DBRefCascade;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -25,6 +26,9 @@ import java.io.Serializable;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of player object. It's one of the main
+ * classes in this project. It's holds all player properties.
  */
 @Document
 public class Player implements Serializable {
@@ -34,8 +38,8 @@ public class Player implements Serializable {
     private @Id String id;
     private @Field PlayerType type;
 
-    @DBRef
-//    @DBRefCascade
+    @Indexed
+    @DBRef // without @DBRefCascade
     private PortalUser portalUser;
 
     public Player() {
@@ -46,26 +50,50 @@ public class Player implements Serializable {
         this.portalUser = portalUser;
     }
 
+    /**
+     * Returns a player's id.
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Sets a player's id.
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Returns a player's type.
+     * @return PlayerType
+     */
     public PlayerType getType() {
         return type;
     }
 
+    /**
+     * Sets a player's type.
+     * @param type
+     */
     public void setType(PlayerType type) {
         this.type = type;
     }
 
+    /**
+     * Returns a portal user object instance.
+     * @return PortalUser
+     */
     public PortalUser getPortalUser() {
         return portalUser;
     }
 
+    /**
+     * Sets a portal user objects instance.
+     * @param portalUser
+     */
     public void setPortalUser(PortalUser portalUser) {
         this.portalUser = portalUser;
     }

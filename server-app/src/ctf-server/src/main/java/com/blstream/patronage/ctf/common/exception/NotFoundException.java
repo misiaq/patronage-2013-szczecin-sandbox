@@ -17,6 +17,8 @@ package com.blstream.patronage.ctf.common.exception;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a representation of not found resource exception.
  */
 public class NotFoundException extends RuntimeException {
 

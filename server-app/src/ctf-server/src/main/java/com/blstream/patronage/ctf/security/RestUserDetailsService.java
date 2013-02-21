@@ -29,6 +29,11 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/29/13
+ *
+ * This class is a representation of REST authentication user details service which is using by Spring Security for users
+ * authentication process.
+ *
+ * @see <a href="http://static.springsource.org/spring-security/site/docs/3.2.x/reference/springsecurity-single.html">Spring-Security 3.2 reference</a>
  */
 @Named("restUserDetailsService")
 public class RestUserDetailsService implements UserDetailsService {
@@ -66,8 +71,8 @@ public class RestUserDetailsService implements UserDetailsService {
         if (logger.isInfoEnabled()) {
             logger.info(
                     String.format(
-                            "User: [username: %s, id: %s] was found in database.",
-                            portalUser.getUsername(), portalUser.getId()
+                            "User: [username: %s] was found in database.",
+                            portalUser.getUsername()
                     )
             );
         }

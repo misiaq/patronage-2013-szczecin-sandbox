@@ -1,7 +1,4 @@
-package com.blstream.patronage.ctf.service;
-
-import com.blstream.patronage.ctf.common.service.CrudService;
-import com.blstream.patronage.ctf.model.SimpleModel;
+package com.blstream.patronage.ctf.common.errors;
 
 /**
  * Copyright 2013 BLStream
@@ -19,12 +16,32 @@ import com.blstream.patronage.ctf.model.SimpleModel;
  * limitations under the License.
  *
  * User: mkr
- * Date: 1/16/13
+ * Date: 2/19/13
  *
- * Example.
- *
- * TODO: remove this example class.
+ * This class is a representation of enum type for error codes.
+ * All error codes are stored in error-codes.properties file.
  */
-public interface SimpleService extends CrudService<SimpleModel, String> {
-    SimpleModel findByName(String name);
+public enum ErrorCodeType {
+    SUCCESS("0.0.0"),
+
+    FAILED("5.0.0"),
+    BAD_REQUEST("4.0.4"),
+
+    CANNOT_CREATE_NEW_PLAYER("1.0.1"),
+    PLAYER_ALREADY_EXISTS("1.0.2"),
+    ;
+
+    private String code;
+
+    private ErrorCodeType(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String toString() {
+        return code;
+    }
 }

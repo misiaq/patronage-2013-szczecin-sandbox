@@ -27,17 +27,19 @@ import java.util.List;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of portal user object. This is a basic user model
+ * with username, password and other security properties.
+ *
+ * TODO: make password encrypted using e.g. SHA-1!
  */
 @Document
 public class PortalUser implements Serializable {
 
     private static final long serialVersionUID = 5227112390633063751L;
 
-    private @Id String id;
-    private @Indexed String username;
+    private @Id @Indexed String username;
     private String password;
-    private String firstName;
-    private String lastName;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
@@ -56,44 +58,36 @@ public class PortalUser implements Serializable {
         this.password = password;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     * Returns a username.
+     * @return String
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Sets a username.
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Returns a password.
+     * @return String
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets a password.
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public boolean isAccountNonExpired() {

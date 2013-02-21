@@ -2,6 +2,7 @@ package com.blstream.patronage.ctf.repository;
 
 import com.blstream.patronage.ctf.model.Player;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import javax.inject.Named;
 
@@ -22,7 +23,17 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/22/13
+ *
+ * This class is a representation of MongoDB repository for all players.
  */
 @Named("playerRepository")
 public interface PlayerRepository extends MongoRepository<Player, String> {
+
+    /**
+     * This method finds player based on his username.
+     * @param username
+     * @return Player
+     */
+    @Query("{ 'portalUser.$id': ?0 }")
+    Player findByUsername(String username);
 }

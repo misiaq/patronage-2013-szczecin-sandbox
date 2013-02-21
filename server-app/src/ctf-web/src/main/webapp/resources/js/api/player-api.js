@@ -19,43 +19,40 @@
 
 
 /*
-    REQUEST:
+REQUEST:
 
-        How to load player list?
+How to load player list?
 
-            > curl -H "Accept: application/json" -H "Content-type: application/json" -H "Authorization: Bearer f1dc7fdb-a0ef-4208-9ed6-3be5f93870d4" -X GET http://localhost:8080/api/secured/player?all
+    > curl -H "Accept: application/json" -H "Content-type: application/json" -H "Authorization: Bearer f1dc7fdb-a0ef-4208-9ed6-3be5f93870d4" -X GET http://localhost:8080/api/secured/player?all
 
-            HEADERS: {
-                Accept: application/json,
-                Content-type: application/json,
-                Authorization: Bearer ed756770-e752-4f54-a278-1eee91a47b4a
-            }
+    HEADERS: {
+        Accept: application/json,
+        Content-type: application/json,
+        Authorization: Bearer ed756770-e752-4f54-a278-1eee91a47b4a
+    }
 
-        curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"username":"michal.krawczak@gmail.com","password":"FKA13#aqFR3", "firstName":null,"lastName":null,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true, "roles": ["PORTAL_USER"]}' http://localhost:8080/api/trusted/createUser
+curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"username":"michal.krawczak@gmail.com","password":"FKA13#aqFR3", "firstName":null,"lastName":null,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true, "roles": ["PORTAL_USER"]}' http://localhost:8080/api/trusted/createUser
 
-        How to add new player?
+How to add new player?
 
-            > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"type":"PRIVATE","portalUser":{"username":"krol.julian@blstream.com","password":"FKA13#aqFR3","firstName":"Krol","lastName":"Julian","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true}}' http://localhost:8080/api/trusted/createPlayer
+    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"username":"krol.julian@blstream.com","password":"FKA13#aqFR3"}' http://localhost:8080/api/players/add
 
+    HEADERS: {
+        Accept: application/json,
+        Content-type: application/json
+    }
 
-            HEADERS: {
-                Accept: application/json,
-                Content-type: application/json
-            }
-
-            POST DATA: {
-                "type": "PRIVATE",
-                "portalUser": {
-                    "username": "krol.julian@blstream.com",
-                    "password": "FKA13#aqFR3",
-                    "firstName": "Krol",
-                    "lastName": "Julian",
-                    "accountNonExpired": true,
-                    "accountNonLocked": true,
-                    "credentialsNonExpired": true,
-                    "enabled": true
-                }
-            }
+    POST DATA: {
+        "type": "PRIVATE",
+        "portalUser": {
+            "username": "krol.julian@blstream.com",
+            "password": "FKA13#aqFR3",
+            "accountNonExpired": true,
+            "accountNonLocked": true,
+            "credentialsNonExpired": true,
+            "enabled": true
+        }
+    }
  */
 
 /*
@@ -70,8 +67,6 @@
                         "id": "510a6cc2da063f708d7af354",
                         "username": "michal.krawczak@blstream.com",
                         "password": "FKA13#aqFR3",
-                        "firstName": Michal,
-                        "lastName": Krawczak,
                         "accountNonExpired": true,
                         "accountNonLocked": true,
                         "credentialsNonExpired": true,
@@ -94,8 +89,6 @@
                         "id": "510a6cc2da063f708d7af355",
                         "username": "michal.krawczak@gmail.com",
                         "password": "FKA13#aqFR3",
-                        "firstName": Michal,
-                        "lastName": Krawczak,
                         "accountNonExpired": true,
                         "accountNonLocked": true,
                         "credentialsNonExpired": true,
@@ -113,7 +106,7 @@
         ];
 */
 
-var player_url = server_host + "/api/secured/player";
+var player_url = server_host + "/api/secured/players";
 
 function getAllPlayersExample(access_token, callback) {
     getAllPlayers(access_token, callback);

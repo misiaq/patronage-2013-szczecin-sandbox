@@ -22,8 +22,16 @@ import javax.inject.Named;
  *
  * User: mkr
  * Date: 1/16/13
+ *
+ * This class is a representation of MongoDB repository for all simple models.
  */
 @Named("simpleRepository")
 public interface SimpleRepository extends MongoRepository<SimpleModel, String> {
+
+    /**
+     * This method returns simple model object based on name.
+     * @param name
+     * @return SimpleModel
+     */
     SimpleModel findByName(String name);
 }

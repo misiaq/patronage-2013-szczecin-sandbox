@@ -22,8 +22,16 @@ import javax.inject.Named;
  *
  * User: lahim
  * Date: 1/23/13
+ *
+ * This class is a representation of MongoDB repository for all portal users.
  */
 @Named("portalUserRepository")
 public interface PortalUserRepository extends MongoRepository<PortalUser, String> {
+
+    /**
+     * This method returns portal user based on username.
+     * @param username
+     * @return PortalUser
+     */
     PortalUser findByUsername(String username);
 }

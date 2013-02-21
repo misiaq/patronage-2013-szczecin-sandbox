@@ -17,8 +17,8 @@
  * Date: 1/31/13
  */
 
-//var server_host = "https://capturetheflag.blstream.com:8080/demo";
-var server_host = "http://localhost:8080/";
+var server_host = "https://capturetheflag.blstream.com:8080/demo";
+//var server_host = "http://localhost:8080/";
 var access_token = null;
 
 $(document).ready(function () {
@@ -54,8 +54,7 @@ function userListCallback(listData) {
     for (var i=0; i<listData.length; i++) {
         var user = listData[i];
 
-        html += "<li>" + "id: " + user.id + " | " + user.firstName + " " + user.lastName + " <a href=\"mailto:"
-            + user.username + "\">" + user.username + "</a></li>";
+        html += "<li>" + "username: " + user.username + "</li>";
     }
     $("#txt_allUserList").html(html);
 }
@@ -66,8 +65,7 @@ function playerListCallback(listData) {
         var player = listData[i];
         var user = player.portalUser;
 
-        html += "<li>" + "id: " + player.id + " | " + player.type + " | " + user.firstName + " " + user.lastName + " <a href=\"mailto:"
-            + user.username + "\">" + user.username + "</a></li>";
+        html += "<li>" + "id: " + player.id + " | " + player.type + " | " + user.username + "</li>";
     }
     $("#txt_allPlayerList").html(html);
 }
