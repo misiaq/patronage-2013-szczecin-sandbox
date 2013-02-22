@@ -1,4 +1,11 @@
 <div class="hero-unit">
     <h1>Register form</h1>
     <p>@TODO</p>
+
+        <form class="navbar-form pull-right ng-valid ng-dirty" name="registerForm" ng-submit="RegisterUser()" ng-controller="MainCtrl">
+            <input class="login-inp ng-valid ng-dirty" type="text" required class="input-block-level" placeholder="Username" ng-model="r_username" name="r_username">
+            <input class="login-inp ng-valid ng-dirty" type="password" required class="input-block-level" placeholder="Password" ng-model="r_password" name="r_password">
+            <button class="btn" type="submit">Register</button>
+        </form>
+
 </div>

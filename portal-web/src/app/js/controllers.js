@@ -19,7 +19,11 @@ wwwApp.controller('PlayersCtrl', function($scope) {
 wwwApp.controller('MainCtrl', function($scope, $http, $templateCache, $location, $timeout) {
 	
 	// global config
-	$scope.server_host = 'https://capturetheflag.blstream.com:8080/demo'
+	$scope.server_host = 'https://capturetheflag.blstream.com:8080/demo';
+	
+	$scope.login_url = $scope.server_host + '/oauth/token';
+	$scope.register_url = $scope.server_host + '/api/players/add';
+	
 	$scope.login_url = $scope.server_host + '/oauth/token';
 	$scope.client_id = 'web_www';
 	$scope.client_secret = 'secret';
@@ -65,9 +69,27 @@ wwwApp.controller('MainCtrl', function($scope, $http, $templateCache, $location,
 			}
 		});
 	}
+	
+	$scope.RegisterUser = function() {
+		$.ajax({
+			type : "POST",
+			beforeSend : function(request) {
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				request.setRequestHeader("Accept", "application/json");
+			},
+			url : $scope.register_url,
+			data : {
+				username : $scope.r_username,
+				password : $scope.r_password
+			},
+			success : function(authData) {
+				console.log(authData)
+			},
+			error : function(errorData) {
+				console.log(errorData)
+			}
+		});
+		
+	}
 
 });
-
-function UserRegisterCtrl($scope, $routeParams, $cookies) {
-
-}
