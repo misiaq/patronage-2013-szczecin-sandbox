@@ -24,7 +24,6 @@ wwwApp.controller('MainCtrl', function($scope, $http, $templateCache, $location,
 	$scope.login_url = $scope.server_host + '/oauth/token';
 	$scope.register_url = $scope.server_host + '/api/players/add';
 	
-	$scope.login_url = $scope.server_host + '/oauth/token';
 	$scope.client_id = 'web_www';
 	$scope.client_secret = 'secret';
 	$scope.grant_type = 'password';

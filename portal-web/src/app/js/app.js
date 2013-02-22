@@ -47,7 +47,7 @@ wwwApp.run(function($rootScope, localStorage, $location){
 	$rootScope.location = $location;
 	$rootScope.$watch('location.path()', function( path ) {
 	    if (path == '/logout') {  
-	    	$rootScope.setUserStatus('',false);
+	    	$rootScope.setUserStatus('', false, '');
 	    	$location.path('/');
 	    }
 	});
