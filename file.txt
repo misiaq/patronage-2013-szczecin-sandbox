@@ -1,0 +1,2 @@
+dodawanie, usuwanie, z GIT'em zapoznanie,
+pierwsze w patronage to jest zadanie;
