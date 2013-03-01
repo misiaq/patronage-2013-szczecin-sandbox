@@ -1,3 +1,38 @@
 ::jacek.szydlowski::
 android team blstream patronage
 :task 1:
+
+
+some random stuff:
+Here are your random strings:
+
+MwE6AW7aFJbF5QtRVfaV
+PdCwcvFv1AMFXO1tHVEB
+7UucVeGKhqlMlFplkM2w
+2H5aBYr7EdwRrlonidbB
+6qVzhPKP7tJvcRTmSnMo
+13QAriX3xFrSmCHC6Xvt
+oQGWaWeCVfGBD1QlZM9d
+PdgM6uz9iAf5iSoQG1nn
+0xhlfwjlASLmrcA0v0PP
+7UHTpxU2BoOWvvOC7Aez
+JT7pxvrKX2KiQV85b15e
+MQ38siF0s7n1EDQUb0J6
+Mw3YR4CnaycJSect00Hj
+EIs68YyYo0cAZJhCpVqT
+thZlFeWXNByHOCi6HhXN
+tKBTXAW4asN3J5QzeJEH
+mkyokweZnJMFOMLIT2OE
+dlUYc1VDesWujyBDe2LP
+PXr2PEz6UKEqFFKobr00
+OQKIpdByoRTaiGHs4FC9
+djhSeXVxHxRqC9WLHH7X
+Rj2D9l9luzzbqYtCMxhZ
+7b6Wf2qZKHt42MkuJzL3
+O1B6KmULUTiKv8tadDjd
+clj7jIBNuyYPg4jYypmi
+GOwXQllN7vWggxShHg72
+BgxTag51Lb87MfMxwZIg
+NXcEwhKP0NMSlr73Tyus
+
+Timestamp: 2013-03-01 23:27:59 UTC
