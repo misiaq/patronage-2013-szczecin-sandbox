@@ -5,4 +5,4 @@ Patronage 2013 Szczecin playground.
 
 zmienilem to :)
 
-zostalo zmienione :)
+zostalo  zmienione :)
