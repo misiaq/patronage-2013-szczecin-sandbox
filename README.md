@@ -7,4 +7,4 @@ zmienilem to :)
 
 zostalo  zmienione :)
 
-coœ trzeba zmieniæ to zmieniam :)
+coœ trzeba zmieniæ to zmieniam :))
